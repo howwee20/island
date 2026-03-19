@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A00000000000000000000050 /* NotchShelfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000020 /* NotchShelfApp.swift */; };
+		A00000000000000000000051 /* ScreenshotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000021 /* ScreenshotItem.swift */; };
+		A00000000000000000000052 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000022 /* PersistenceService.swift */; };
+		A00000000000000000000053 /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000023 /* ThumbnailService.swift */; };
+		A00000000000000000000054 /* BookmarkStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000024 /* BookmarkStore.swift */; };
+		A00000000000000000000055 /* DirectoryWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000025 /* DirectoryWatcher.swift */; };
+		A00000000000000000000056 /* ScreenshotStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000026 /* ScreenshotStore.swift */; };
+		A00000000000000000000057 /* WatchedFolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000027 /* WatchedFolderController.swift */; };
+		A00000000000000000000058 /* ShelfItemDragWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000028 /* ShelfItemDragWriter.swift */; };
+		A00000000000000000000059 /* ShelfItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000029 /* ShelfItemView.swift */; };
+		A0000000000000000000005A /* ShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000002A /* ShelfView.swift */; };
+		A0000000000000000000005B /* ShelfWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000002B /* ShelfWindowController.swift */; };
+		A0000000000000000000005C /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000002C /* StatusItemController.swift */; };
+		A0000000000000000000005D /* NSView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000002D /* NSView+Layout.swift */; };
+		A0000000000000000000005E /* NSImage+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000002E /* NSImage+Encoding.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A0000000000000000000000B /* NotchShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00000000000000000000020 /* NotchShelfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShelfApp.swift; sourceTree = "<group>"; };
+		A00000000000000000000021 /* ScreenshotItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotItem.swift; sourceTree = "<group>"; };
+		A00000000000000000000022 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		A00000000000000000000023 /* ThumbnailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailService.swift; sourceTree = "<group>"; };
+		A00000000000000000000024 /* BookmarkStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkStore.swift; sourceTree = "<group>"; };
+		A00000000000000000000025 /* DirectoryWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryWatcher.swift; sourceTree = "<group>"; };
+		A00000000000000000000026 /* ScreenshotStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotStore.swift; sourceTree = "<group>"; };
+		A00000000000000000000027 /* WatchedFolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedFolderController.swift; sourceTree = "<group>"; };
+		A00000000000000000000028 /* ShelfItemDragWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfItemDragWriter.swift; sourceTree = "<group>"; };
+		A00000000000000000000029 /* ShelfItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfItemView.swift; sourceTree = "<group>"; };
+		A0000000000000000000002A /* ShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
+		A0000000000000000000002B /* ShelfWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfWindowController.swift; sourceTree = "<group>"; };
+		A0000000000000000000002C /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		A0000000000000000000002D /* NSView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Layout.swift"; sourceTree = "<group>"; };
+		A0000000000000000000002E /* NSImage+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Encoding.swift"; sourceTree = "<group>"; };
+		A0000000000000000000002F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0000000000000000000000E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000003 /* Products */,
+				A00000000000000000000004 /* NotchShelf */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000B /* NotchShelf.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000004 /* NotchShelf */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000020 /* NotchShelfApp.swift */,
+				A00000000000000000000005 /* Models */,
+				A00000000000000000000006 /* Services */,
+				A00000000000000000000007 /* UI */,
+				A00000000000000000000008 /* Utilities */,
+				A00000000000000000000009 /* Resources */,
+			);
+			path = NotchShelf;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000021 /* ScreenshotItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000022 /* PersistenceService.swift */,
+				A00000000000000000000023 /* ThumbnailService.swift */,
+				A00000000000000000000024 /* BookmarkStore.swift */,
+				A00000000000000000000025 /* DirectoryWatcher.swift */,
+				A00000000000000000000026 /* ScreenshotStore.swift */,
+				A00000000000000000000027 /* WatchedFolderController.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000007 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000028 /* ShelfItemDragWriter.swift */,
+				A00000000000000000000029 /* ShelfItemView.swift */,
+				A0000000000000000000002A /* ShelfView.swift */,
+				A0000000000000000000002B /* ShelfWindowController.swift */,
+				A0000000000000000000002C /* StatusItemController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000008 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000002D /* NSView+Layout.swift */,
+				A0000000000000000000002E /* NSImage+Encoding.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000002F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0000000000000000000000A /* NotchShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000010 /* Build configuration list for PBXNativeTarget "NotchShelf" */;
+			buildPhases = (
+				A0000000000000000000000C /* Sources */,
+				A0000000000000000000000E /* Frameworks */,
+				A0000000000000000000000D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotchShelf;
+			productName = NotchShelf;
+			productReference = A0000000000000000000000B /* NotchShelf.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A0000000000000000000000A = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A0000000000000000000000F /* Build configuration list for PBXProject "NotchShelf" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000002;
+			productRefGroup = A00000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0000000000000000000000A /* NotchShelf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0000000000000000000000D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0000000000000000000000C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000050 /* NotchShelfApp.swift in Sources */,
+				A00000000000000000000051 /* ScreenshotItem.swift in Sources */,
+				A00000000000000000000052 /* PersistenceService.swift in Sources */,
+				A00000000000000000000053 /* ThumbnailService.swift in Sources */,
+				A00000000000000000000054 /* BookmarkStore.swift in Sources */,
+				A00000000000000000000055 /* DirectoryWatcher.swift in Sources */,
+				A00000000000000000000056 /* ScreenshotStore.swift in Sources */,
+				A00000000000000000000057 /* WatchedFolderController.swift in Sources */,
+				A00000000000000000000058 /* ShelfItemDragWriter.swift in Sources */,
+				A00000000000000000000059 /* ShelfItemView.swift in Sources */,
+				A0000000000000000000005A /* ShelfView.swift in Sources */,
+				A0000000000000000000005B /* ShelfWindowController.swift in Sources */,
+				A0000000000000000000005C /* StatusItemController.swift in Sources */,
+				A0000000000000000000005D /* NSView+Layout.swift in Sources */,
+				A0000000000000000000005E /* NSImage+Encoding.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A00000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A00000000000000000000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A00000000000000000000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_CATEGORY = "public.app-category.utilities";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchShelf/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.local.NotchShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A00000000000000000000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_CATEGORY = "public.app-category.utilities";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchShelf/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.local.NotchShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0000000000000000000000F /* Build configuration list for PBXProject "NotchShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000011 /* Debug */,
+				A00000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000010 /* Build configuration list for PBXNativeTarget "NotchShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000013 /* Debug */,
+				A00000000000000000000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000001 /* Project object */;
+}
