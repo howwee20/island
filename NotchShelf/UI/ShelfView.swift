@@ -12,7 +12,7 @@ final class ShelfView: NSView {
         }
     }
 
-    let collapsedSize = NSSize(width: 232, height: 36)
+    let collapsedSize = NSSize(width: 320, height: 44)
 
     var expandedSize: NSSize {
         let rowCount = max(store.recentItems.count, store.pinnedItems.count, 1)
@@ -62,7 +62,8 @@ final class ShelfView: NSView {
         layer?.shadowRadius = 18
         layer?.shadowOffset = NSSize(width: 0, height: -6)
 
-        registerForDraggedTypes([.fileURL, .png, .tiff])
+        let promiseTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        registerForDraggedTypes(promiseTypes + [.fileURL, .png, .tiff])
         setupCollapsedView()
         setupExpandedView()
         applyDisplayMode()
@@ -145,6 +146,18 @@ final class ShelfView: NSView {
     }
 
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        let startedPromiseImport = store.importFilePromises(from: sender.draggingPasteboard) { [weak self] importedCount in
+            guard let self, importedCount > 0 else { return }
+            self.onHoverStateChange?(true)
+        }
+
+        if startedPromiseImport {
+            isDropTargetActive = false
+            onDropStateChange?(false)
+            updateAppearance()
+            return true
+        }
+
         let importedCount = store.importFromPasteboard(sender.draggingPasteboard)
         let didImport = importedCount > 0
 
@@ -357,6 +370,10 @@ final class ShelfView: NSView {
     private func canImport(from pasteboard: NSPasteboard) -> Bool {
         let urlOptions: [NSPasteboard.ReadingOptionKey: Any] = [.urlReadingFileURLsOnly: true]
         if let urls = pasteboard.readObjects(forClasses: [NSURL.self], options: urlOptions) as? [URL], !urls.isEmpty {
+            return true
+        }
+
+        if let receivers = pasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil) as? [NSFilePromiseReceiver], !receivers.isEmpty {
             return true
         }
 

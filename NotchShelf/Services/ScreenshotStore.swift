@@ -106,6 +106,50 @@ final class ScreenshotStore {
     }
 
     @discardableResult
+    func importFilePromises(from pasteboard: NSPasteboard, completion: @escaping (Int) -> Void) -> Bool {
+        let receivers = pasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil) as? [NSFilePromiseReceiver] ?? []
+        guard !receivers.isEmpty else {
+            completion(0)
+            return false
+        }
+
+        let destinationURL = persistenceService.rootDirectoryURL.appendingPathComponent("IncomingPromises", isDirectory: true)
+        try? fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true)
+
+        let group = DispatchGroup()
+        let lock = NSLock()
+        var importedCount = 0
+        var receivedURLs: [URL] = []
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 1
+
+        for receiver in receivers {
+            group.enter()
+            receiver.receivePromisedFiles(atDestination: destinationURL, options: [:], operationQueue: operationQueue) { [weak self] fileURL, error in
+                defer { group.leave() }
+                guard let self, error == nil else { return }
+
+                if (try? self.importImage(at: fileURL)) != nil {
+                    lock.lock()
+                    importedCount += 1
+                    receivedURLs.append(fileURL)
+                    lock.unlock()
+                }
+            }
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            guard let self else { return }
+            for receivedURL in receivedURLs {
+                try? self.fileManager.removeItem(at: receivedURL)
+            }
+            completion(importedCount)
+        }
+
+        return true
+    }
+
+    @discardableResult
     func importImage(at url: URL) throws -> ScreenshotItem {
         let accessingSecurityScope = url.startAccessingSecurityScopedResource()
         defer {

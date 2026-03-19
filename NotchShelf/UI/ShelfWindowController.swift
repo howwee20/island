@@ -7,6 +7,7 @@ final class ShelfWindowController: NSWindowController {
     }
 
     private let shelfView: ShelfView
+    private let store: ScreenshotStore
     private var collapseWorkItem: DispatchWorkItem?
     private var isPointerInsideShelf = false
     private var isDragInsideShelf = false
@@ -14,6 +15,7 @@ final class ShelfWindowController: NSWindowController {
     private(set) var isExpanded = false
 
     init(store: ScreenshotStore) {
+        self.store = store
         shelfView = ShelfView(store: store)
 
         let panel = ShelfPanel(
@@ -80,7 +82,13 @@ final class ShelfWindowController: NSWindowController {
             return
         }
 
+        if store.items.isEmpty {
+            setExpanded(true, animated: false)
+        }
+
+        NSApp.activate(ignoringOtherApps: true)
         updateWindowFrame(animated: false)
+        window.makeKeyAndOrderFront(nil)
         window.orderFrontRegardless()
         let frame = targetWindowFrame()
         print("[NotchShelf] shelf frame: \(frame)")
@@ -157,6 +165,10 @@ final class ShelfWindowController: NSWindowController {
     }
 
     private func scheduleCollapseIfNeeded() {
+        guard !store.items.isEmpty else {
+            return
+        }
+
         guard !isPointerInsideShelf, !isDragInsideShelf else {
             return
         }
