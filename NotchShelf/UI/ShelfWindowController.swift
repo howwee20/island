@@ -8,18 +8,17 @@ final class ShelfWindowController: NSWindowController {
 
     private let shelfView: ShelfView
     private let store: ScreenshotStore
-    private var collapseWorkItem: DispatchWorkItem?
     private var isPointerInsideShelf = false
     private var isDragInsideShelf = false
 
-    private(set) var isExpanded = false
+    private(set) var isExpanded = true
 
     init(store: ScreenshotStore) {
         self.store = store
         shelfView = ShelfView(store: store)
 
         let panel = ShelfPanel(
-            contentRect: NSRect(origin: .zero, size: shelfView.collapsedSize),
+            contentRect: NSRect(origin: .zero, size: shelfView.expandedSize),
             styleMask: [.borderless, .nonactivatingPanel],
             backing: .buffered,
             defer: false
@@ -40,7 +39,8 @@ final class ShelfWindowController: NSWindowController {
 
         super.init(window: panel)
 
-        shelfView.frame = NSRect(origin: .zero, size: shelfView.collapsedSize)
+        shelfView.isExpanded = true
+        shelfView.frame = NSRect(origin: .zero, size: shelfView.expandedSize)
         shelfView.autoresizingMask = [.width, .height]
         panel.contentView = shelfView
 
@@ -57,7 +57,7 @@ final class ShelfWindowController: NSWindowController {
         }
 
         shelfView.onBackgroundClick = { [weak self] in
-            self?.toggleExpansion()
+            self?.showShelf()
         }
 
         NotificationCenter.default.addObserver(
@@ -82,10 +82,7 @@ final class ShelfWindowController: NSWindowController {
             return
         }
 
-        if store.items.isEmpty {
-            setExpanded(true, animated: false)
-        }
-
+        setExpanded(true, animated: false)
         NSApp.activate(ignoringOtherApps: true)
         updateWindowFrame(animated: false)
         window.makeKeyAndOrderFront(nil)
@@ -100,12 +97,10 @@ final class ShelfWindowController: NSWindowController {
     }
 
     func collapseIfNotHovered() {
-        guard !isPointerInsideShelf, !isDragInsideShelf else { return }
-        setExpanded(false)
     }
 
     func toggleShelf() {
-        toggleExpansion()
+        showShelf()
     }
 
     func updateWindowFrame(animated: Bool) {
@@ -137,19 +132,10 @@ final class ShelfWindowController: NSWindowController {
         updateWindowFrame(animated: animated)
     }
 
-    private func toggleExpansion() {
-        cancelPendingCollapse()
-        setExpanded(!isExpanded)
-    }
-
     private func handleHoverState(_ isHovering: Bool) {
         isPointerInsideShelf = isHovering
-
         if isHovering {
-            cancelPendingCollapse()
             setExpanded(true)
-        } else {
-            scheduleCollapseIfNeeded()
         }
     }
 
@@ -157,48 +143,23 @@ final class ShelfWindowController: NSWindowController {
         isDragInsideShelf = isDraggingOver
 
         if isDraggingOver {
-            cancelPendingCollapse()
             setExpanded(true, animated: true)
-        } else {
-            scheduleCollapseIfNeeded()
         }
     }
 
     private func scheduleCollapseIfNeeded() {
-        guard !store.items.isEmpty else {
-            return
-        }
-
-        guard !isPointerInsideShelf, !isDragInsideShelf else {
-            return
-        }
-
-        cancelPendingCollapse()
-
-        let workItem = DispatchWorkItem { [weak self] in
-            guard let self, !self.isPointerInsideShelf, !self.isDragInsideShelf else {
-                return
-            }
-
-            self.setExpanded(false)
-        }
-
-        collapseWorkItem = workItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: workItem)
     }
 
     private func cancelPendingCollapse() {
-        collapseWorkItem?.cancel()
-        collapseWorkItem = nil
     }
 
     private func targetWindowFrame() -> NSRect {
         let screen = window?.screen ?? NSScreen.main ?? NSScreen.screens.first ?? NSScreen.main!
-        let preferredSize = isExpanded ? shelfView.expandedSize : shelfView.collapsedSize
+        let preferredSize = shelfView.expandedSize
 
         let maxWidth = min(preferredSize.width, screen.visibleFrame.width - 120)
         let topInset = max(screen.safeAreaInsets.top, screen.frame.maxY - screen.visibleFrame.maxY)
-        let topAnchorY = screen.frame.maxY - topInset - 6
+        let topAnchorY = screen.frame.maxY - topInset - 12
 
         return NSRect(
             x: floor(screen.frame.midX - (maxWidth / 2)),

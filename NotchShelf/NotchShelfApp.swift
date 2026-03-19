@@ -24,12 +24,9 @@ final class NotchShelfApp: NSObject, NSApplicationDelegate {
 
         // Debug window — always visible on launch
         debugWindowController = DebugWindowController(shelfWindowController: shelfWindowController)
-        debugWindowController.showWindow(nil)
-        debugWindowController.window?.makeKeyAndOrderFront(nil)
 
         watchedFolderController.restoreSavedFolder()
-        shelfWindowController.showShelf()
-        shelfWindowController.forceExpand()
+        presentWindows()
 
         // Global hotkey: Control+Option+N toggles shelf
         globalHotkeyMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
@@ -46,11 +43,12 @@ final class NotchShelfApp: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        debugWindowController.showWindow(nil)
-        debugWindowController.window?.makeKeyAndOrderFront(nil)
-        shelfWindowController.showShelf()
-        shelfWindowController.forceExpand()
+        presentWindows()
         return true
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        presentWindows()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -58,5 +56,13 @@ final class NotchShelfApp: NSObject, NSApplicationDelegate {
             NSEvent.removeMonitor(monitor)
         }
         watchedFolderController.stopWatching(clearBookmark: false)
+    }
+
+    private func presentWindows() {
+        debugWindowController.showWindow(nil)
+        debugWindowController.window?.orderFrontRegardless()
+        debugWindowController.window?.makeKeyAndOrderFront(nil)
+        shelfWindowController.showShelf()
+        shelfWindowController.forceExpand()
     }
 }
