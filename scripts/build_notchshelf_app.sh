@@ -22,6 +22,7 @@ swiftc \
   "$ROOT_DIR/NotchShelf/Services/DirectoryWatcher.swift" \
   "$ROOT_DIR/NotchShelf/Services/ScreenshotStore.swift" \
   "$ROOT_DIR/NotchShelf/Services/WatchedFolderController.swift" \
+  "$ROOT_DIR/NotchShelf/UI/DebugWindowController.swift" \
   "$ROOT_DIR/NotchShelf/UI/ShelfItemDragWriter.swift" \
   "$ROOT_DIR/NotchShelf/UI/ShelfItemView.swift" \
   "$ROOT_DIR/NotchShelf/UI/ShelfView.swift" \

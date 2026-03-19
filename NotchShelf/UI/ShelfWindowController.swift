@@ -82,6 +82,22 @@ final class ShelfWindowController: NSWindowController {
 
         updateWindowFrame(animated: false)
         window.orderFrontRegardless()
+        let frame = targetWindowFrame()
+        print("[NotchShelf] shelf frame: \(frame)")
+        print("[NotchShelf] panel ordered front")
+    }
+
+    func forceExpand() {
+        setExpanded(true, animated: true)
+    }
+
+    func collapseIfNotHovered() {
+        guard !isPointerInsideShelf, !isDragInsideShelf else { return }
+        setExpanded(false)
+    }
+
+    func toggleShelf() {
+        toggleExpansion()
     }
 
     func updateWindowFrame(animated: Bool) {
